@@ -41,6 +41,7 @@ public class ArrayExercise1Q7 {  // begin class
     	String delim = "[ :]+";		// delimiter string for splitting input string
     	String tabSpace = "      ";	// six spaces
     	
+        String YorN = "";               //String that holds users answer
         int[] Rn = new int[MAX];        //array for the random numbers
         Random rand = new Random();     //creates a new random generator
         
@@ -78,8 +79,14 @@ public class ArrayExercise1Q7 {  // begin class
  	    	
     // ************************ get input **********************
 
-        
-        
+        YorN = JOptionPane.showInputDialog("Would you like to activate sentinel values?"
+                + "\nPlease Type either Yes or No");
+        if (YorN.equals("Yes") || YorN.equals("yes")){//if input was Yes this is executed
+            SentinelVal = true;
+        }//end of if
+        else {//if input was not Yes this is executed
+            SentinelVal = false;
+        }//end of else
         
     // ************************ processing ***************************
         
