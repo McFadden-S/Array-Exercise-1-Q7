@@ -84,7 +84,22 @@ public class ArrayExercise1Q7 {  // begin class
                 sum += Rn[i]; //sums the array by running total
         }//end of summing for loop
         
-        average = sum / MAX; //calculates average
+        average = (double)sum / MAX; //calculates average
+        
+            min = Rn[0]; //  assume first elements as smallest number
+ 	    max = Rn[0]; //  assume first elements as largest number
+ 
+ 		for (int i = 0; i < MAX; i++)  // iterate for loop from arrays 1st index (second element)
+ 		{
+ 			if (Rn[i] > max) //checks if number is greater
+ 			{
+ 				max = Rn[i]; //if its greater assignes it
+ 			}//end of if loop
+ 			if (Rn[i] < min) //checks if number is lesser
+ 			{
+ 				min = Rn[i]; //if its lesser assignes it
+ 			} //end of if loop
+ 		}//end of for loop
     
     // ************************ print output ****************************
         
@@ -93,11 +108,14 @@ public class ArrayExercise1Q7 {  // begin class
                 System.out.print(Rn[i] + ", ");
             }//end of print array for loop
             
-            System.out.println("\nSum of Array: " + sum); //prints sum
+            System.out.println("\n\nSum of Array: " + sum); //prints sum
             
-            System.out.println("\nAverage of Array: " + average); //prints average
+            System.out.println("Average of Array: " + average); //prints average
             
-            System.out.println("\nMinimum of Array: " + min);
+            System.out.println("Minimum of Array: " + min); //prints min
+            
+            System.out.println("Maximum of Array: " + max); //prints max
+            
         // ******** closing message *********
         
         System.out.println("\n\nend of processing.");
