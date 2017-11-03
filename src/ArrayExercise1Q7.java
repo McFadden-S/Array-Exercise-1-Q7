@@ -7,9 +7,10 @@
  *
  * Description:     
  *
- * Input: data to be input
+ * Input:           where there should be a sentinel value or not
  *
- * Output: results to be output
+ * Output:          prints the array, sum of array, average of array, 
+ *                  minimum of array and maximum of array
  ***********************************************************************/
  
  // import java libraries here as needed
@@ -27,6 +28,7 @@ public class ArrayExercise1Q7 {  // begin class
     // ********* declaration of constants **********
     
         final int MAX = 10;     //constant for max size of array
+        final int RANGE = 10;   //constant for the range of number values that can be in array
     
     // ********** declaration of variables **********
     
@@ -41,6 +43,10 @@ public class ArrayExercise1Q7 {  // begin class
     	
         int[] Rn = new int[MAX];        //array for the random numbers
         Random rand = new Random();     //creates a new random generator
+        
+        int aLen = 0;                   //int for amount of numbers before sentinel value
+        boolean SentinelVal = true;    //boolean that goes true if theres a sentinal value
+        boolean ZeroCheck = false;     //boolean that goes true if there is a zero in array
 
         int sum = 0;                        //int for sum of the array
         double average = 0;                 //double for average of the array
@@ -72,39 +78,61 @@ public class ArrayExercise1Q7 {  // begin class
  	    	
     // ************************ get input **********************
 
+        
+        
+        
+    // ************************ processing ***************************
+        
         for (int i = 0; i < MAX; i++){ //loop to assign values to array
             
-            Rn[i] = rand.nextInt(10) + 1;  //assignes a random value
+            Rn[i] = rand.nextInt(RANGE);  //assignes a random value
             
         }//end of assignment for loop
-
-    // ************************ processing ***************************
-    
-        for (int i = 0; i < MAX; i++){//loop to sum array
+        
+        for(int i=0; i< MAX; i++){ //for loop which checks for zero
+              if(Rn[i] == 0){//if which is true if there is zero
+                ZeroCheck = true; //sets zerocheck to true
+                break; //breaks loop
+              }// end of zero if
+              else { //executed if no there
+                ZeroCheck = false; //sets zero check to false
+              }//end of no zero else
+        }//end of zero check loop
+        
+        if (SentinelVal && ZeroCheck){
+            for (int i = 0; Rn[i] != 0; i++){//loop to count numbers before sentinel value
+                aLen++;
+            }//end of numbers before sentinel value count for loop
+        }//end of sentinel value if
+        else {
+            aLen = MAX;
+        }//end of aLen = MAX else
+        
+        for (int i = 0; i < aLen; i++){//loop to sum array
                 sum += Rn[i]; //sums the array by running total
         }//end of summing for loop
+
+        average = (double)sum / aLen; //calculates average
         
-        average = (double)sum / MAX; //calculates average
-        
-            min = Rn[0]; //  assume first elements as smallest number
- 	    max = Rn[0]; //  assume first elements as largest number
+        min = Rn[0]; //  assume first elements as smallest number
+ 	max = Rn[0]; //  assume first elements as largest number
  
- 		for (int i = 0; i < MAX; i++)  // iterate for loop from arrays 1st index (second element)
- 		{
- 			if (Rn[i] > max) //checks if number is greater
- 			{
- 				max = Rn[i]; //if its greater assignes it
- 			}//end of if loop
- 			if (Rn[i] < min) //checks if number is lesser
- 			{
- 				min = Rn[i]; //if its lesser assignes it
- 			} //end of if loop
- 		}//end of for loop
+            for (int i = 0; i < aLen; i++)  // iterate for loop from arrays 1st index (second element)
+            {
+                    if (Rn[i] > max) //checks if number is greater
+                    {
+                            max = Rn[i]; //if its greater assignes it
+                    }//end of if loop
+                    if (Rn[i] < min) //checks if number is lesser
+                    {
+                            min = Rn[i]; //if its lesser assignes it
+                    } //end of if loop
+            }//end of for loop
     
     // ************************ print output ****************************
         
             System.out.println("Array Values: ");//output header
-            for (int i = 0; i < MAX; i++) {//loop to print array
+            for (int i = 0; i < aLen; i++) {//loop to print array
                 System.out.print(Rn[i] + ", ");
             }//end of print array for loop
             
