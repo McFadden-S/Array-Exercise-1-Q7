@@ -17,6 +17,7 @@
  import javax.swing.*;
  import java.text.DecimalFormat;
  import java.io.*; 					// import file io libraries
+import java.util.Random;
  
 
 public class ArrayExercise1Q7 {  // begin class
@@ -24,6 +25,8 @@ public class ArrayExercise1Q7 {  // begin class
     public static void main(String[] args) throws IOException{  // begin main
     
     // ********* declaration of constants **********
+    
+        final int MAX = 10;     //constant for max size of array
     
     // ********** declaration of variables **********
     
@@ -36,7 +39,13 @@ public class ArrayExercise1Q7 {  // begin class
     	String delim = "[ :]+";		// delimiter string for splitting input string
     	String tabSpace = "      ";	// six spaces
     	
-    
+        int[] Rn = new int[MAX];        //array for the random numbers
+        Random rand = new Random();     //creates a new random generator
+
+        int sum = 0;                        //int for sum of the array
+        double average = 0;                 //double for average of the array
+        int min = 0;                        //int for minimum of array
+        int max = 0;                        //int for maximum of array
     	
     	//BufferedReader fin = new BufferedReader(new FileReader("name of file"));
     	PrintWriter fout = new PrintWriter(new BufferedWriter(new FileWriter("testOut.txt")));
@@ -63,16 +72,35 @@ public class ArrayExercise1Q7 {  // begin class
  	    	
     // ************************ get input **********************
 
-   
+        for (int i = 0; i < MAX; i++){ //loop to assign values to array
+            
+            Rn[i] = rand.nextInt(10) + 1;  //assignes a random value
+            
+        }//end of assignment for loop
 
     // ************************ processing ***************************
     
-    // ************************ print output ****************************
-
+        for (int i = 0; i < MAX; i++){//loop to sum array
+                sum += Rn[i]; //sums the array by running total
+        }//end of summing for loop
+        
+        average = sum / MAX; //calculates average
     
+    // ************************ print output ****************************
+        
+            System.out.println("Array Values: ");//output header
+            for (int i = 0; i < MAX; i++) {//loop to print array
+                System.out.print(Rn[i] + ", ");
+            }//end of print array for loop
+            
+            System.out.println("\nSum of Array: " + sum); //prints sum
+            
+            System.out.println("\nAverage of Array: " + average); //prints average
+            
+            System.out.println("\nMinimum of Array: " + min);
         // ******** closing message *********
         
-        System.out.println("end of processing.");
+        System.out.println("\n\nend of processing.");
         fout.format("%n%nend of processing.");
         
         // ***** close streams *****
